@@ -1,2 +1,4 @@
 /build/
 /bin/
+/checkstyle-josm-ColorPlugin.xml
+/spotbugs-josm-ColorPlugin.xml
