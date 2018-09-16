@@ -14,10 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.text.MaskFormatter;
 
-import org.openstreetmap.josm.Main;
 import org.openstreetmap.josm.command.ChangePropertyCommand;
+import org.openstreetmap.josm.data.UndoRedoHandler;
+import org.openstreetmap.josm.data.osm.OsmDataManager;
 import org.openstreetmap.josm.data.osm.OsmPrimitive;
 import org.openstreetmap.josm.gui.ExtendedDialog;
+import org.openstreetmap.josm.gui.MainApplication;
 
 @SuppressWarnings("serial")
 public class ColorDialog extends ExtendedDialog implements ActionListener{
@@ -80,7 +82,7 @@ public class ColorDialog extends ExtendedDialog implements ActionListener{
 
     public ColorDialog() {
 
-        super(Main.parent, tr("Color Picker"),BUTTON_TEXTS);
+        super(MainApplication.getMainFrame(), tr("Color Picker"),BUTTON_TEXTS);
         setCancelButton(2);
 
         setButtonIcons(BUTTON_ICONS);
@@ -124,11 +126,11 @@ public class ColorDialog extends ExtendedDialog implements ActionListener{
                 value= insertMaxSevenCharaters(e); // get value from input
 
                 Collection<OsmPrimitive> sel;
-                sel = Main.main.getInProgressSelection(); // objects selected in 2D
+                sel = OsmDataManager.getInstance().getInProgressSelection(); // objects selected in 2D
 
                 if (sel!=null){
                     String key = "colour"; // set attribute 
-                    Main.main.undoRedo.add(new ChangePropertyCommand(sel, key, value)); //  add values
+                    UndoRedoHandler.getInstance().add(new ChangePropertyCommand(sel, key, value)); //  add values
                     dispose(); //after click on button close panel
                 }
             }
