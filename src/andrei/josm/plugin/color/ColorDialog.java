@@ -46,8 +46,8 @@ public class ColorDialog extends ExtendedDialog implements ActionListener{
         tr("Cancel") };
 
 
-    private static final String[] BUTTON_ICONS = new String[] { //"ok.png",
-    "cancel.png" };
+    private static final String[] BUTTON_ICONS = new String[] { //"ok",
+    "cancel" };
 
     String hexaCode;
 
